@@ -22,13 +22,18 @@ def fqz_compress(in_file, out_file):
         in_file: Input FASTQ file that needs to be compressed.
         out_file: Compressed FASTQ file
     """
+    
     print("Performing FQZ compression on a FASTQ file")
+    print("Input File: " + in_file)
+    print("Output file: " + out_file)
+
     cmd = BASE_EXE_LOC + FQZ_EXE
     # check that the in_file exists
     if not os.path.isfile(in_file):
         raise Exception("Input file does not exist.")
     # Check that the parent directory of the out_file exists
     # Get the parent directory
+    pdir = "."
     if '/' in out_file:
         pdir = path.dirname(out_file)
     # check if pdir exists
