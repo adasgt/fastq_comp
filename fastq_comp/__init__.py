@@ -45,6 +45,6 @@ def fqz_compress(in_file, out_file):
 def test():
     """It is a test function to just run a shell script
     """
-    cmd = BASE_EXE_LOC + "test.sh"
-    cmd_out = subprocess.check_output([cmd])
+    cmd = BASE_EXE_LOC + FQZ_EXE
+    cmd_out = subprocess.check_output([cmd, "-h"])
     print(cmd_out)
