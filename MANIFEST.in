@@ -1,0 +1,3 @@
+include Makefile
+include fastq_comp/static
+recursive-include fastq_comp/static *
