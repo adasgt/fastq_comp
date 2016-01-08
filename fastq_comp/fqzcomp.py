@@ -25,8 +25,6 @@ def compress(in_file, out_file):
     """
 
     print("Performing FQZ compression on a FASTQ file")
-    print("Input File: " + in_file)
-    print("Output file: " + out_file)
 
     cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
     # check that the in_file exists
@@ -46,7 +44,7 @@ def compress(in_file, out_file):
         raise Exception("Subprocess call failed. " + cp.output)
     except OSError:
         raise Exception("Subprocess call failed. The command is not found.")
-    print("Return code from the process: " + str(rcode))
+
     print("Done. The compressed file is available at: " + out_file)
 
 
@@ -58,9 +56,7 @@ def decompress(in_file, out_file):
         out_file: FASTQ file produced by the utility.
     """
 
-    print("Performing FQZ compression on a FASTQ file")
-    print("Input File: " + in_file)
-    print("Output file: " + out_file)
+    print("Performing FQZ decompression on a compressed FASTQ file")
 
     cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
     # check that the in_file exists
@@ -80,13 +76,6 @@ def decompress(in_file, out_file):
         raise Exception("Subprocess call failed. " + cp.output)
     except OSError:
         raise Exception("Subprocess call failed. The command is not found.")
-    print("Return code from the process: " + str(rcode))
-    print("Done. The uncompressed file is available at: " + out_file)
 
+    print("Done. The decompressed file is available at: " + out_file)
 
-def test():
-    """It is a test function to just run a shell script
-    """
-    cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
-    cmd_out = subprocess.check_output([cmd, "-h"])
-    print(cmd_out)
