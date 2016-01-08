@@ -7,6 +7,7 @@ from subprocess import call
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 
+
 class FastQZipBuild(build):
     """
     Compiles and builds all the compression tools mentioned in the Makefile
@@ -42,11 +43,11 @@ setup(
     author_email="abhiram.das@gmail.com",
 
     # Packages
-    packages=["fastq_comp", "fastq_comp/static"],
+    packages=["fastq_comp", "test"],
 
     # Include additional files into the package
     include_package_data=True,
-
+    test_suite='test',
     # Details
     url="",
 

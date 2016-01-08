@@ -1,3 +1,4 @@
 include Makefile
-include fastq_comp/static
-recursive-include fastq_comp/static *
+include fastq_comp/static/test.sh
+include fastq_comp/static/readme.txt
+include test/data/*.fastq
