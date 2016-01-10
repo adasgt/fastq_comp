@@ -49,13 +49,13 @@ setup(
     include_package_data=True,
     test_suite='test',
     # Details
-    url="",
+    url="https://github.com/adasgt/fastq_comp",
 
     #
-    # license="LICENSE.txt",
+    license="LICENSE.txt",
     description="A library to compress FASTQ files using different compression techniques.",
 
-    # long_description=open("README.txt").read(),
+    long_description=open("README.txt").read(),
     cmdclass={
         'build': FastQZipBuild,
     }

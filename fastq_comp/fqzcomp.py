@@ -7,14 +7,14 @@ from os import path
 import subprocess
 from subprocess import call, PIPE, STDOUT
 import fastq_comp
-try:
-    from subprocess import DEVNULL
-except ImportError:
-    DEVNULL = open(os.devnull, 'wb')
+# try:
+#     from subprocess import DEVNULL  # python version 3.5
+# except ImportError:
+#     DEVNULL = open(os.devnull, 'wb')
 
 # fqz_comp is the final utility that does the work.
 FQZ_EXE = "fqz_comp"
-
+DEVNULL = open(os.devnull, 'wb')
 
 def compress(in_file, out_file):
     """Compresses the in_file to out_file using Fqzcomp utility/algorithm.
