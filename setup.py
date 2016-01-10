@@ -3,6 +3,7 @@
 import os
 from setuptools import setup
 from distutils.command.build import build
+from distutils.command.install import install
 from subprocess import call
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +29,24 @@ class FastQZipBuild(build):
 
         self.execute(compile, [], 'Compiling FASTQ compression and decompression libraries.')
 
+
+class FastQZipInstall(install):
+   def initialize_options(self):
+       install.initialize_options(self)
+       self.build_scripts = None
+
+   def finalize_options(self):
+       install.finalize_options(self)
+       self.set_undefined_options('build', ('build_scripts', 'build_scripts'))
+
+   def run(self):
+        # run original install code
+        print("Installation Lib :" + self.install_lib)
+        install.run(self)
+
+        self.copy_tree(self.build_lib, self.install_lib)
+
+        print("Build Lib :" + self.build_lib)
 
 # Setup the compression library
 setup(
@@ -58,5 +77,6 @@ setup(
     long_description=open("README.txt").read(),
     cmdclass={
         'build': FastQZipBuild,
+        'install': FastQZipInstall,
     }
 )
