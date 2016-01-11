@@ -13,7 +13,7 @@ import fastq_comp
 #     DEVNULL = open(os.devnull, 'wb')
 
 # fqz_comp is the final utility that does the work.
-FQZ_EXE = "fqz_comp"
+FQZ_EXE = "/fqz_comp"
 DEVNULL = open(os.devnull, 'wb')
 
 def compress(in_file, out_file):
