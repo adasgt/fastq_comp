@@ -26,7 +26,7 @@ def compress(in_file, out_file):
 
     print("Performing FQZ compression on a FASTQ file")
 
-    cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
+    cmd = FQZ_EXE
     # check that the in_file exists
     if not os.path.isfile(in_file):
         raise Exception("Input FASTQ file does not exist.")
@@ -58,7 +58,7 @@ def decompress(in_file, out_file):
 
     print("Performing FQZ decompression on a compressed FASTQ file")
 
-    cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
+    cmd = FQZ_EXE
     # check that the in_file exists
     if not os.path.isfile(in_file):
         raise Exception("Input FASTQ file does not exist.")

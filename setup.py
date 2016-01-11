@@ -76,7 +76,7 @@ setup(
 
     long_description=open("README.txt").read(),
     cmdclass={
-        'build': FastQZipBuild,
+        #'build': FastQZipBuild,
         #'install': FastQZipInstall,
     }
 )
