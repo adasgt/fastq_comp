@@ -1,6 +1,6 @@
 SHELL=/bin/bash -e
 
-FINAL_DIR:=$(CURDIR)/bin
+FINAL_DIR:=$(CURDIR)/fastq_comp/static
 TEMP_DIR:=$(CURDIR)/tmp
 FQZ_URL:="http://downloads.sourceforge.net/project/fqzcomp/fqzcomp-4.6.tar.gz"
 FQZ_FILE:="fqzcomp-4.6.tar.gz"
@@ -17,5 +17,4 @@ fqzcomp:
 	$(MAKE) -C $(TEMP_DIR)/fqzcomp-$(FQZ_VS)
 	cp $(TEMP_DIR)/fqzcomp-$(FQZ_VS)/fqz_comp $(FINAL_DIR)
 	rm -rf $(TEMP_DIR)
-
 all: fqzcomp

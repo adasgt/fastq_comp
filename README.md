@@ -8,8 +8,6 @@ This library is available at http://sourceforge.net/projects/fqzcomp/.
 To use this library first run make as follows:
 
 <code> make fqzcomp</code>
-Set the PATH environment variable as
-<code> export PATH=$PATH:./bin
 
 Usage of this library in python source to compress a FASTQ file:
 
