@@ -6,6 +6,7 @@ import os
 from os import path
 import subprocess
 from subprocess import call, PIPE, STDOUT
+from distutils import spawn
 import fastq_comp
 # try:
 #     from subprocess import DEVNULL  # python version 3.5
@@ -14,6 +15,13 @@ import fastq_comp
 
 # fqz_comp is the final utility that does the work.
 FQZ_EXE = "fqz_comp"
+# find full path of the FQZ_EXE
+FQZ_CMD = spawn.find_executable(FQZ_EXE)
+# if FQZ_CMD is None or blank, print error message and raise an exception
+if FQZ_CMD is None:
+    print(FQZ_EXE + " is not found in the system.")
+    exit(1)
+
 DEVNULL = open(os.devnull, 'wb')
 
 def compress(in_file, out_file):
@@ -26,7 +34,6 @@ def compress(in_file, out_file):
 
     print("Performing FQZ compression on a FASTQ file")
 
-    cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
     # check that the in_file exists
     if not os.path.isfile(in_file):
         raise Exception("Input FASTQ file does not exist.")
@@ -39,7 +46,7 @@ def compress(in_file, out_file):
     if not os.path.exists(pdir):
         raise fastq_comp.FASTQCompError("Output directory does not exist.")
     try:
-        rcode = call([cmd, in_file, out_file], stdout=DEVNULL, stderr=STDOUT)
+        rcode = call([FQZ_CMD, in_file, out_file], stdout=DEVNULL, stderr=STDOUT)
     except subprocess.CalledProcessError as cp:
         raise Exception("Subprocess call failed. " + cp.output)
     except OSError:
@@ -58,7 +65,6 @@ def decompress(in_file, out_file):
 
     print("Performing FQZ decompression on a compressed FASTQ file")
 
-    cmd = fastq_comp.BASE_EXE_LOC + FQZ_EXE
     # check that the in_file exists
     if not os.path.isfile(in_file):
         raise Exception("Input FASTQ file does not exist.")
@@ -71,7 +77,7 @@ def decompress(in_file, out_file):
     if not os.path.exists(pdir):
         raise fastq_comp.FASTQCompError("Output directory does not exist.")
     try:
-        rcode = call([cmd, "-d", in_file, out_file], stdout=DEVNULL, stderr=STDOUT)
+        rcode = call([FQZ_CMD, "-d", in_file, out_file], stdout=DEVNULL, stderr=STDOUT)
     except subprocess.CalledProcessError as cp:
         raise Exception("Subprocess call failed. " + cp.output)
     except OSError:
